@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyze Emotion</title>
+</head>
+<body>
+    <h1>Analyze Emotion</h1>
+    <p id="emotion-result"></p>
+
+    <script>
+        var emotionResult = document.getElementById('emotion-result');
+
+        fetch('http://127.0.0.1:5000/analyze')
+        .then(response => response.json())
+        .then(data => {
+            if (data.emotion) {
+                emotionResult.innerText = 'Emotion: ' + data.emotion;
+            } else {
+                emotionResult.innerText = 'No face detected';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    </script>
+</body>
+</html>
